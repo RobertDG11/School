@@ -1,16 +1,12 @@
 import React from "react";
-import { Container, Header } from "semantic-ui-react";
-
-import image from "../../images/school.png";
+import { Container, Header, Icon, HeaderContent } from "semantic-ui-react";
 
 const DeCe = props => (
   <Container textAlign="justified">
-    <Header
-      as="h2"
-      icon="question"
-      content="Scurt istoric al colegiului"
-      textAlign="center"
-    />
+    <Header as="h2" icon textAlign="center">
+      <Icon name="question" circular />
+      <Header.Content>De ce CNAIC?</Header.Content>
+    </Header>
     <p style={{ lineHeight: "1.5em", fontSize: "1.33em" }}>
       Pentru că e mai mult decât o instituţie şcolară cu tradiţie şi performanţe
       recunoscute, cu profesori de excepţie şi clase care se deschid către nou.
@@ -35,4 +31,4 @@ const DeCe = props => (
   </Container>
 );
 
-export default Istoric;
+export default DeCe;

@@ -23,6 +23,8 @@ import logo from "../../images/logo2.png";
 import ResponsiveContainer from "./Container/ResponsiveContainer";
 import Istoric from "../TextComponents/Istoric";
 import Prof from "../TextComponents/Profesori";
+import DeCe from "../TextComponents/DeCe";
+import Testimonial from "../Testimonial/Testimonial";
 
 const HomepageLayout = () => (
   <ResponsiveContainer>
@@ -31,6 +33,8 @@ const HomepageLayout = () => (
       <Divider className={styles.AddMargin} />
       <Prof />
       <Divider className={styles.AddMargin} />
+      <DeCe />
+      <Testimonial />
     </Segment>
   </ResponsiveContainer>
 );
