@@ -16,7 +16,7 @@ class App extends Component {
       <Router>
         <Provider store={store}>
           <div className="Test">
-            <Layout showCarousel={true}>
+            <Layout>
               <Route exact path="/" component={Homepage} />
               <Route path="/profesori" component={Professors} />
               <Route
