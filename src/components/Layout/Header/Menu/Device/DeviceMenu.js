@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Menu, MenuItem, Icon } from "semantic-ui-react";
+import Login from "../../../../Modals/Login/Login";
 
 import styles from "../Menu.module.scss";
 
@@ -9,12 +10,22 @@ const DeviceMenu = props => (
       <Icon name="sidebar" />
     </MenuItem>
     <MenuItem position="right">
-      <Button as="a" inverted>
-        Log in
-      </Button>
-      <Button as="a" inverted className={styles.SignUpButton}>
-        Sign Up
-      </Button>
+      <Login
+        register={false}
+        trigger={
+          <Button as="a" inverted style={{ zIndex: "100" }}>
+            Log in
+          </Button>
+        }
+      />
+      <Login
+        register
+        trigger={
+          <Button as="a" inverted className={styles.SignUpButton}>
+            Sign Up
+          </Button>
+        }
+      />
     </MenuItem>
   </Menu>
 );

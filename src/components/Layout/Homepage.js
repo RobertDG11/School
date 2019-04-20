@@ -16,15 +16,14 @@ import {
   Visibility,
   Input
 } from "semantic-ui-react";
-import Carousel from "./Header/Carousel/Carousel";
 import styles from "../TextComponents/Text.module.scss";
 import "../../App.scss";
-import logo from "../../images/logo2.png";
 import ResponsiveContainer from "./Container/ResponsiveContainer";
 import Istoric from "../TextComponents/Istoric";
 import Prof from "../TextComponents/Profesori";
 import DeCe from "../TextComponents/DeCe";
-import Testimonial from "../Testimonial/Testimonial";
+import Card from "../Cards/SimpleCards";
+import Scheduler from "../Scheduler/Scheduler";
 
 const HomepageLayout = () => (
   <ResponsiveContainer>
@@ -34,7 +33,8 @@ const HomepageLayout = () => (
       <Prof />
       <Divider className={styles.AddMargin} />
       <DeCe />
-      <Testimonial />
+      <Card />
+      <Scheduler minuteStep={15} />
     </Segment>
   </ResponsiveContainer>
 );

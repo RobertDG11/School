@@ -7,6 +7,7 @@ import {
   Input,
   Image
 } from "semantic-ui-react";
+import Login from "../../../../Modals/Login/Login";
 
 import styles from "../Menu.module.scss";
 import logo from "../../../../../images/logo2.png";
@@ -77,21 +78,30 @@ class DesktopMenu extends Component {
             placeholder="Search..."
           />
           <Container fluid>
-            <Button
-              as="a"
-              inverted={!this.props.fixed}
-              className={styles.LoginButton}
-            >
-              Log in
-            </Button>
-            <Button
-              as="a"
-              inverted={!this.props.fixed}
-              primary={this.props.fixed}
-              className={styles.SignUpButton}
-            >
-              Sign Up
-            </Button>
+            <Login
+              trigger={
+                <Button
+                  as="a"
+                  inverted={!this.props.fixed}
+                  className={styles.LoginButton}
+                >
+                  Log in
+                </Button>
+              }
+            />
+            <Login
+              register
+              trigger={
+                <Button
+                  as="a"
+                  inverted={!this.props.fixed}
+                  primary={this.props.fixed}
+                  className={styles.SignUpButton}
+                >
+                  Sign Up
+                </Button>
+              }
+            />
           </Container>
         </MenuItem>
       </Menu>

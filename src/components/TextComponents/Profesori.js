@@ -34,7 +34,7 @@ const Profesori = props => (
         </p>
       </GridColumn>
       <GridColumn floated="right" width={6}>
-        <Image bordered rounded size="large" src={prof} />
+        <Image bordered rounded size="large" src={prof} centered />
       </GridColumn>
     </GridRow>
     <GridRow>

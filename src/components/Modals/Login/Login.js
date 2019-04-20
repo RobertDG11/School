@@ -2,211 +2,104 @@ import React, { Component } from "react";
 import {
   Button,
   Header,
-  Image,
   Modal,
-  Input,
   Icon,
   Segment,
   Divider,
-  Grid,
-  Form
+  Grid
 } from "semantic-ui-react";
+import WindowSize from "../../../hoc/WindowSize";
+import LoginForm from "../../Forms/LoginForm";
+import RegisterForm from "../../Forms/RegisterForm";
 import styles from "./Login.module.scss";
 
-const RegisterForm = () => (
-  <Form>
-    <Form.Input
-      required
-      icon="user"
-      iconPosition="left"
-      label="First name"
-      placeholder="First name"
-    />
-    <Form.Input
-      required
-      icon="user"
-      iconPosition="left"
-      label="Last name"
-      placeholder="Last name"
-    />
-    <Form.Input
-      required
-      icon="lock"
-      iconPosition="left"
-      label="Password"
-      placeholder="Password"
-      type="password"
-    />
-    <Form.Input
-      required
-      icon="lock"
-      iconPosition="left"
-      label="Confirm password"
-      placeholder="Confirm password"
-      type="password"
-    />
-    <Form.Input
-      required
-      icon="at"
-      iconPosition="left"
-      label="Email"
-      labelPosition="right corner"
-      placeholder="email"
-      type="email"
-    />
-    <Form.Input
-      required
-      icon="id card"
-      iconPosition="left"
-      label="Legitimation number"
-      placeholder="Legitimation number"
-    />
+class Login extends Component {
+  state = {
+    register: this.props.register
+  };
 
-    <Button animated attached="bottom">
-      <Button.Content visible>Register</Button.Content>
-      <Button.Content hidden>
-        <Icon name="signup" />
-      </Button.Content>
-    </Button>
-  </Form>
-);
+  changeForm = () => {
+    this.setState({ register: !this.state.register });
+  };
+  render() {
+    const mobile = this.props.windowWidth < 768;
 
-const LoginForm = () => (
-  <Form>
-    <Form.Input
-      required
-      icon="at"
-      iconPosition="left"
-      label="Email"
-      labelPosition="right corner"
-      placeholder="email"
-      type="email"
-    />
-    <Form.Input
-      required
-      icon="lock"
-      iconPosition="left"
-      label="Password"
-      placeholder="Password"
-      type="password"
-    />
-
-    <Button animated attached="bottom">
-      <Button.Content visible>Login</Button.Content>
-      <Button.Content hidden>
-        <Icon name="sign-in" />
-      </Button.Content>
-    </Button>
-
-    <Segment
-      style={{
-        backgroundColor: "transparent",
-        border: "0px",
-        boxShadow: "0 0 0 0"
-      }}
-    >
-      <Button
-        basic
-        style={{
-          backgroundColor: "transparent",
-          border: "0px",
-          boxShadow: "0 0 0 0",
-          padding: "0px"
-        }}
+    return (
+      <Modal
+        trigger={this.props.trigger}
+        className={styles.loginModal}
+        closeOnDimmerClick
+        centered
+        size="small"
       >
-        <a href="" textAlign="center">
-          <Header
-            as="h5"
-            icon="question circle outline"
-            content="Forgot your password?"
-            textAlign="center"
-          />
-        </a>
-      </Button>
-    </Segment>
-  </Form>
-);
+        <Modal.Content scrolling>
+          <Modal.Description>
+            <Segment placeholder>
+              <Grid columns={2} relaxed="very" stackable verticalAlign="middle">
+                <Grid.Column>
+                  {this.state.register ? <RegisterForm /> : <LoginForm />}
+                </Grid.Column>
 
-const Login = props => (
-  <Modal open={true} className={styles.loginModal}>
-    <Modal.Content>
-      <Modal.Description>
-        {/* <Header>Default Profile Image</Header> */}
-
-        <Segment placeholder>
-          <Grid columns={2} relaxed="very" stackable verticalAlign="middle">
-            <Grid.Column>
-              {props.register ? <RegisterForm /> : <LoginForm />}
-            </Grid.Column>
-
-            <Grid.Column verticalAlign="middle">
-              <Segment
-                style={{
-                  backgroundColor: "transparent",
-                  border: "0px",
-                  boxShadow: "0 0 0 0"
-                }}
-              >
-                <Button animated size="big">
-                  <Button.Content visible>
-                    {props.register ? "Log in" : "Register"}
-                  </Button.Content>
-                  <Button.Content hidden>
-                    <Icon name={props.register ? "sign-in" : "signup"} />
-                  </Button.Content>
-                </Button>
-              </Segment>
-
-              {props.register ? (
-                <Segment
-                  style={{
-                    backgroundColor: "transparent",
-                    border: "0px",
-                    boxShadow: "0 0 0 0"
-                  }}
-                >
-                  <Button
-                    basic
+                <Grid.Column verticalAlign="middle">
+                  {mobile ? <Divider horizontal>Or</Divider> : null}
+                  <Segment
                     style={{
                       backgroundColor: "transparent",
                       border: "0px",
-                      boxShadow: "0 0 0 0",
-                      padding: "0px"
+                      boxShadow: "0 0 0 0"
                     }}
                   >
-                    <a href="" textAlign="center">
-                      <Header
-                        as="h5"
-                        icon="question circle outline"
-                        content="Forgot your password?"
-                        textAlign="center"
-                      />
-                    </a>
-                  </Button>
-                </Segment>
-              ) : (
-                ""
-              )}
-            </Grid.Column>
-          </Grid>
+                    <Button animated size="big" onClick={this.changeForm}>
+                      <Button.Content visible>
+                        {this.state.register ? "Log in" : "Register"}
+                      </Button.Content>
+                      <Button.Content hidden>
+                        <Icon
+                          name={this.state.register ? "sign-in" : "signup"}
+                        />
+                      </Button.Content>
+                    </Button>
+                  </Segment>
 
-          <Divider vertical>Or</Divider>
-        </Segment>
-      </Modal.Description>
-    </Modal.Content>
-  </Modal>
-);
+                  {this.state.register ? (
+                    <Segment
+                      style={{
+                        backgroundColor: "transparent",
+                        border: "0px",
+                        boxShadow: "0 0 0 0"
+                      }}
+                    >
+                      <Button
+                        basic
+                        style={{
+                          backgroundColor: "transparent",
+                          border: "0px",
+                          boxShadow: "0 0 0 0",
+                          padding: "0px"
+                        }}
+                      >
+                        <a href="">
+                          <Header
+                            style={{ paddingTop: "1px" }}
+                            as="h5"
+                            icon="question circle outline"
+                            content="Forgot your password?"
+                            textAlign="center"
+                          />
+                        </a>
+                      </Button>
+                    </Segment>
+                  ) : null}
+                </Grid.Column>
+              </Grid>
 
-class LoginModal extends Component {
-  render() {
-    const register = true;
-
-    return (
-      <div>
-        <Login register={register} />
-      </div>
+              {!mobile ? <Divider vertical>Or</Divider> : null}
+            </Segment>
+          </Modal.Description>
+        </Modal.Content>
+      </Modal>
     );
   }
 }
 
-export default LoginModal;
+export default WindowSize(Login);

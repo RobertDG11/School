@@ -108,11 +108,13 @@ class Carousel extends Component {
               ))}
             </List>
           </GridColumn>
-          <Icon
-            name="angle double down"
-            size="huge"
-            className={styles.CenterArrowBounce}
-          />
+          {this.props.mobile ? null : (
+            <Icon
+              name="angle double down"
+              size="huge"
+              className={styles.CenterArrowBounce}
+            />
+          )}
         </GridRow>
       </Aux>
     );

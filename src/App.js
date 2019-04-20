@@ -2,17 +2,19 @@ import React, { Component } from "react";
 import "./App.scss";
 
 import HomepageLayout from "./components/Layout/Homepage";
-import LoginModal from "./components/Modals/Login/Login"
-
-import Carousel from "./components/Layout/Header/Carousel/Carousel";
+import Login from "./components/Modals/Login/Login";
+import store from "./components/redux/store";
+import { Provider } from "react-redux";
 
 class App extends Component {
   render() {
     return (
-      <div className="Test">
-        <HomepageLayout />
-        <LoginModal />
-      </div>
+      <Provider store={store}>
+        <div className="Test">
+          <HomepageLayout />
+          <Login />
+        </div>
+      </Provider>
     );
   }
 }
