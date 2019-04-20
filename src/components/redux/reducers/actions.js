@@ -1,0 +1,1 @@
+export const SHOW_CAROUSEL = "SHOW_CAROUSEL";

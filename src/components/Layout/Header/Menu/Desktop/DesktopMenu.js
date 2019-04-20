@@ -7,7 +7,10 @@ import {
   Input,
   Image
 } from "semantic-ui-react";
+import { Route, Link } from "react-router-dom";
 import Login from "../../../../Modals/Login/Login";
+import Homepage from "../../../Layout";
+import Professors from "../../../../Cards/SimpleCards";
 
 import styles from "../Menu.module.scss";
 import logo from "../../../../../images/logo2.png";
@@ -36,31 +39,34 @@ class DesktopMenu extends Component {
         ) : null}
 
         <MenuItem
-          as="a"
+          as={Link}
+          to="/"
           name="home"
           active={activeItem === "home"}
           onClick={this.handleItemClick}
           className={styles.CenteredContent}
         >
-          Home
+          Acasa
         </MenuItem>
         <MenuItem
-          as="a"
-          name="work"
-          active={activeItem === "work"}
+          as={Link}
+          to="/profesori"
+          name="prof"
+          active={activeItem === "prof"}
           onClick={this.handleItemClick}
           className={styles.CenteredContent}
         >
-          Work
+          Profesori
         </MenuItem>
         <MenuItem
-          as="a"
-          name="company"
-          active={activeItem === "company"}
+          as={Link}
+          to="/rezerva-sala"
+          name="classroom"
+          active={activeItem === "classroom"}
           onClick={this.handleItemClick}
           className={styles.CenteredContent}
         >
-          Company
+          Rezerva o sala
         </MenuItem>
         <MenuItem
           as="a"

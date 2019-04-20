@@ -1,9 +1,11 @@
-import { combineReducers } from "redux";
-import { formReducer } from "redux-form";
-
-export default function createReducer(extraReducerObjects = {}) {
-  return combineReducers({
-    form: formReducer,
-    ...extraReducerObjects
-  });
+import { SHOW_CAROUSEL } from "./actions";
+const initialState = {
+  showCarousel: false
+};
+function rootReducer(state = initialState, action) {
+  if (action.type === SHOW_CAROUSEL) {
+    state.articles.push(action.payload);
+  }
+  return state;
 }
+export default rootReducer;

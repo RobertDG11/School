@@ -2,10 +2,10 @@ import React from "react";
 import DesktopContainer from "./DesktopContainer";
 import MobileContainer from "./MobileContainer";
 
-const ResponsiveContainer = ({ children }) => (
+const ResponsiveContainer = (showCarousel, { children }) => (
   <div>
-    <DesktopContainer showCarousel>{children}</DesktopContainer>
-    <MobileContainer showCarousel>{children}</MobileContainer>
+    <DesktopContainer showCarousel={showCarousel}>{children}</DesktopContainer>
+    <MobileContainer showCarousel={showCarousel}>{children}</MobileContainer>
   </div>
 );
 

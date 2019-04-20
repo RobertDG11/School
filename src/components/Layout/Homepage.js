@@ -1,41 +1,22 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  List,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar,
-  Visibility,
-  Input
-} from "semantic-ui-react";
-import styles from "../TextComponents/Text.module.scss";
-import "../../App.scss";
-import ResponsiveContainer from "./Container/ResponsiveContainer";
+import React from "react";
+import Aux from "../../hoc/aux";
 import Istoric from "../TextComponents/Istoric";
 import Prof from "../TextComponents/Profesori";
 import DeCe from "../TextComponents/DeCe";
-import Card from "../Cards/SimpleCards";
-import Scheduler from "../Scheduler/Scheduler";
+import { Divider } from "semantic-ui-react";
 
-const HomepageLayout = () => (
-  <ResponsiveContainer>
-    <Segment style={{ padding: "8em 0em" }} vertical>
+import styles from "../TextComponents/Text.module.scss";
+
+const Homepage = () => {
+  return (
+    <Aux>
       <Istoric />
       <Divider className={styles.AddMargin} />
       <Prof />
       <Divider className={styles.AddMargin} />
       <DeCe />
-      <Card />
-      <Scheduler minuteStep={15} />
-    </Segment>
-  </ResponsiveContainer>
-);
-export default HomepageLayout;
+    </Aux>
+  );
+};
+
+export default Homepage;
