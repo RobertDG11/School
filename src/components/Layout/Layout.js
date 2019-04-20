@@ -11,13 +11,6 @@ import Scheduler from "../Scheduler/Scheduler";
 const Layout = props => (
   <ResponsiveContainer showCarousel={props.showCarousel}>
     <Segment style={{ padding: "8em 0em" }} vertical>
-      {/* <Istoric />
-      <Divider className={styles.AddMargin} />
-      <Prof />
-      <Divider className={styles.AddMargin} />
-      <DeCe />
-      <Card />
-      <Scheduler minuteStep={15} /> */}
       {props.children}
     </Segment>
   </ResponsiveContainer>
