@@ -1,11 +1,18 @@
-import { SHOW_CAROUSEL } from "./actions";
+import { SHOW_CAROUSEL } from "../constants/index";
+
 const initialState = {
-  showCarousel: false
+  showCarousel: true
 };
+
 function rootReducer(state = initialState, action) {
-  if (action.type === SHOW_CAROUSEL) {
-    state.articles.push(action.payload);
+  switch (action.type) {
+    case SHOW_CAROUSEL:
+        return {
+            ...state,
+            showCarousel: action.payload
+        };
+    default: return state;
   }
-  return state;
 }
+
 export default rootReducer;
