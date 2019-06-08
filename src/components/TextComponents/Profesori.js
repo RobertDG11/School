@@ -7,30 +7,25 @@ import {
   Header,
   Image
 } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { carouselVisible, modifyActiveItem } from "../redux/actions/actions";
 
 import prof from "../../images/profesors.jpg";
 
-const Profesori = props => (
+const ConnectedProfessors = props => (
   <Grid container stackable verticalAlign="middle">
     <GridRow>
       <GridColumn width={8}>
         <Header as="h3" style={{ fontSize: "2em" }}>
-          Elevi cu rezultate remarcabile
+          {props.literals.students.title}
         </Header>
-        <p style={{ fontSize: "1.33em" }}>
-          De pe bancile Colegiului National "Al.I.Cuza" au plecat oameni care
-          azi au pozitii inalte in toata tara si nu numai. De la ingineri,
-          profesori, oameni de stiinta, politicieni si doctori.
-        </p>
+        <p style={{ fontSize: "1.33em" }}>{props.literals.students.content}</p>
         <Header as="h3" style={{ fontSize: "2em" }}>
-          Cei mai prestigiosi profesori
+          {props.literals.professors.title}
         </Header>
         <p style={{ fontSize: "1.33em" }}>
-          Liceul se poate mandri cu unii dintre profesorii cu cele mai bune
-          rezultate din intreg judetul. Se spune ca cel mai important in primii
-          ani de formare ai unui elev este dascalul. Acesta te poate fie ajuta,
-          fie incurca. Comportamentul tinerilor este influentat in proportie de
-          70% de profesorii din liceu.
+          {props.literals.professors.content}
         </p>
       </GridColumn>
       <GridColumn floated="right" width={6}>
@@ -39,10 +34,40 @@ const Profesori = props => (
     </GridRow>
     <GridRow>
       <GridColumn textAlign="center">
-        <Button size="huge">Fa cunostinta cu ei</Button>
+        <Button
+          as={Link}
+          to="/profesori"
+          size="huge"
+          onClick={() => {
+            props.carouselVisible(false);
+            props.modifyActiveItem("prof");
+          }}
+        >
+          {props.literals.professors.meet}
+        </Button>
       </GridColumn>
     </GridRow>
   </Grid>
 );
 
-export default Profesori;
+const mapStateToProps = state => {
+  return {
+    showCarousel: state.showCarousel.showCarousel,
+    activeItem: state.showCarousel.activeItem,
+    literals: state.literals
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    carouselVisible: showCarousel => dispatch(carouselVisible(showCarousel)),
+    modifyActiveItem: activeItem => dispatch(modifyActiveItem(activeItem))
+  };
+}
+
+const Professors = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedProfessors);
+
+export default Professors;

@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 class QuickEvent extends Component {
   handleClick = (valid, title, upload, color) => {
     if (valid) {
-      this.props.handleClick(this.props.data, title, color);
+      this.props.handleClick(this.props.data, title, color, upload);
     }
   };
 

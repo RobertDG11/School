@@ -12,23 +12,34 @@ import WindowSize from "../../../hoc/WindowSize";
 import LoginForm from "../../Forms/LoginForm";
 import RegisterForm from "../../Forms/RegisterForm";
 import styles from "./Login.module.scss";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { modifyLoginForm } from "../../redux/actions/actions";
 
-class Login extends Component {
-  state = {
-    register: this.props.register
+class ConnectedLogin extends Component {
+  changePath = () => {
+    this.props.history.push("/");
+    this.props.modifyLoginForm({
+      open: false,
+      register: this.props.loginModal.register
+    });
   };
 
   changeForm = () => {
-    this.setState({ register: !this.state.register });
+    this.props.modifyLoginForm({
+      open: this.props.loginModal.open,
+      register: !this.props.loginModal.register
+    });
   };
   render() {
     const mobile = this.props.windowWidth < 768;
-
+    const { open, register } = this.props.loginModal;
     return (
       <Modal
-        trigger={this.props.trigger}
+        open={open}
         className={styles.loginModal}
         closeOnDimmerClick
+        onClose={this.changePath}
         centered
         size="small"
       >
@@ -37,11 +48,11 @@ class Login extends Component {
             <Segment placeholder>
               <Grid columns={2} relaxed="very" stackable verticalAlign="middle">
                 <Grid.Column>
-                  {this.state.register ? <RegisterForm /> : <LoginForm />}
+                  {register ? <RegisterForm /> : <LoginForm />}
                 </Grid.Column>
 
                 <Grid.Column verticalAlign="middle">
-                  {mobile ? <Divider horizontal>Or</Divider> : null}
+                  {mobile ? <Divider horizontal>Sau</Divider> : null}
                   <Segment
                     style={{
                       backgroundColor: "transparent",
@@ -49,19 +60,23 @@ class Login extends Component {
                       boxShadow: "0 0 0 0"
                     }}
                   >
-                    <Button animated size="big" onClick={this.changeForm}>
+                    <Button
+                      as={Link}
+                      to={register ? "/login" : "/register"}
+                      animated
+                      size="big"
+                      onClick={this.changeForm}
+                    >
                       <Button.Content visible>
-                        {this.state.register ? "Log in" : "Register"}
+                        {register ? "Log in" : "Cont nou"}
                       </Button.Content>
                       <Button.Content hidden>
-                        <Icon
-                          name={this.state.register ? "sign-in" : "signup"}
-                        />
+                        <Icon name={register ? "sign-in" : "signup"} />
                       </Button.Content>
                     </Button>
                   </Segment>
 
-                  {this.state.register ? (
+                  {register ? (
                     <Segment
                       style={{
                         backgroundColor: "transparent",
@@ -83,7 +98,7 @@ class Login extends Component {
                             style={{ paddingTop: "1px" }}
                             as="h5"
                             icon="question circle outline"
-                            content="Forgot your password?"
+                            content="Am uitat parola"
                             textAlign="center"
                           />
                         </a>
@@ -102,4 +117,21 @@ class Login extends Component {
   }
 }
 
-export default WindowSize(Login);
+const mapStateToProps = state => {
+  return {
+    loginModal: state.showCarousel.loginModal
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    modifyLoginForm: loginModal => dispatch(modifyLoginForm(loginModal))
+  };
+}
+
+const Login = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedLogin);
+
+export default WindowSize(withRouter(Login));

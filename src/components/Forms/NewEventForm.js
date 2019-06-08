@@ -1,8 +1,9 @@
 import React from "react";
-import { Icon, Form, Input, Message } from "semantic-ui-react";
+import { Icon, Form, Input, Button } from "semantic-ui-react";
 import { reduxForm, Field } from "redux-form";
 import { Required, ValidStartTime, ValidEndTime } from "./Validation";
 import Aux from "../../hoc/aux";
+import Uppy from "../UppyUploader/FileUploader";
 
 const UploadFile = ({
   input: { value: omitValue, ...inputProps },
@@ -10,7 +11,13 @@ const UploadFile = ({
   as: As = Form.Input,
   ...props
 }) => (
-  <Form.Field style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}>
+  <Form.Field
+    style={{
+      width: "70%",
+      marginLeft: "auto",
+      marginRight: "auto"
+    }}
+  >
     <As {...inputProps} {...props} />
   </Form.Field>
 );
@@ -123,16 +130,7 @@ const NewEventForm = props => {
         type="color"
         defaultValue="#ff0000"
       />
-      <Field
-        name="upload"
-        component={UploadFile}
-        icon="file"
-        iconPosition="left"
-        label="Fisier"
-        control={Input}
-        type="file"
-        multiple
-      />
+      <Uppy />
     </Form>
   );
 };

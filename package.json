@@ -4,21 +4,37 @@
   "private": true,
   "dependencies": {
     "@ishawnwang/withunmounted": "^1.0.1",
+    "@uppy/core": "^1.0.1",
+    "@uppy/file-input": "^1.0.1",
+    "@uppy/google-drive": "^1.0.1",
+    "@uppy/react": "^1.0.1",
+    "@uppy/tus": "^1.0.1",
     "axios": "^0.18.0",
+    "faker": "^4.1.0",
+    "google-map-react": "^1.1.4",
+    "google-maps-react": "^2.0.2",
+    "heatmap.js": "^2.0.5",
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
     "react-alice-carousel": "^1.13.2",
     "react-big-scheduler": "^0.2.6",
     "react-color": "^2.17.0",
     "react-dom": "^16.8.4",
+    "react-keyboard-event-handler": "^1.4.1",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "react-scroll": "^1.7.11",
+    "react-scroll-to-component": "^1.0.2",
+    "react-toastify": "^5.1.0",
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
+    "typescript": "^3.4.5",
     "zxcvbn": "^4.4.2"
   },
   "scripts": {
@@ -35,5 +51,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
+  }
 }

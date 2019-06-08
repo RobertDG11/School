@@ -5,17 +5,17 @@ import { Progress } from "semantic-ui-react";
 const createPasswordLabel = result => {
   switch (result.score) {
     case 0:
-      return "Weak";
+      return "Slaba";
     case 1:
-      return "Weak";
+      return "Slaba";
     case 2:
-      return "Fair";
+      return "Acceptabila";
     case 3:
-      return "Good";
+      return "Buna";
     case 4:
-      return "Strong";
+      return "Puternica";
     default:
-      return "Weak";
+      return "Slaba";
   }
 };
 

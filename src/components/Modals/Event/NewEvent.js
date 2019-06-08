@@ -8,30 +8,36 @@ import { connect } from "react-redux";
 class NewEvent extends Component {
   state = {
     open: false,
-    options: [
-      { key: "c1", text: "CN100", value: "c1" },
-      { key: "c2", text: "CN101", value: "c2" },
-      { key: "c3", text: "CN102", value: "c3" },
-      { key: "c4", text: "CN200", value: "c4" },
-      { key: "c5", text: "CN201", value: "c5" },
-      { key: "c6", text: "CN202", value: "c6" }
-    ],
+    options: [],
     showError: false
   };
+
+  componentWillMount() {
+    let options = [];
+    this.props.rooms.forEach(element => {
+      options.push({
+        key: element.id,
+        text: element.name,
+        value: element.id
+      });
+    });
+    this.setState({ options });
+  }
 
   close = () => this.setState({ open: false });
 
   open = () => this.setState({ open: true });
 
-  handleClick = (valid, classroom, start, end, title, color) => {
+  handleClick = async (valid, classroom, start, end, title, color, upload) => {
     if (valid) {
-      const error = this.props.handleClick(
+      const error = await this.props.handleClick(
         this.props.data,
         classroom,
         start,
         end,
         title,
-        color
+        color,
+        upload
       );
       if (error) {
         this.setState({ showError: error });
@@ -101,7 +107,8 @@ class NewEvent extends Component {
                   newStart,
                   newEnd,
                   title,
-                  color
+                  color,
+                  upload
                 )
               }
               positive
@@ -118,6 +125,13 @@ class NewEvent extends Component {
 }
 
 const selector = formValueSelector("newEvent-form");
+
+const mapStateToProps = state => {
+  return {
+    rooms: state.scheduler.rooms
+  };
+};
+
 NewEvent = connect(state => {
   const { title, start, end, classroom, upload, color } = selector(
     state,
@@ -137,6 +151,8 @@ NewEvent = connect(state => {
     color
   };
 })(NewEvent);
+
+NewEvent = connect(mapStateToProps)(NewEvent);
 
 NewEvent = reduxForm({
   form: "newEvent-form"
