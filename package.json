@@ -14,7 +14,7 @@
     "google-map-react": "^1.1.4",
     "google-maps-react": "^2.0.2",
     "heatmap.js": "^2.0.5",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.4",
     "react-alice-carousel": "^1.13.2",
     "react-big-scheduler": "^0.2.6",
